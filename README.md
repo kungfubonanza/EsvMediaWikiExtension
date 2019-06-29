@@ -1,20 +1,20 @@
-This is a blank extension template. It doesn't really do anything on its own.
-It is intended to provide a boiler template for an actual MediaWiki extension.
+# EsvMediaWikiExtension
 
-If you are checking this out from Git and intend to use it, you may use the
-following commands to make a clean directory of just this template without the
-Git meta-data and other examples.
+This [MediaWiki](https://www.mediawiki.org) extension allows a Bible verse (from the [English Standard Version (ESV)](https://www.esv.org) of the Bible) to be included in a MediaWiki.
 
-	cd extensions
-	git clone https://gerrit.wikimedia.org/r/p/mediawiki/extensions/BoilerPlate.git
-	cp -R BoilerPlate ./MyExtension
+## Installation
 
-This automates the recommended code checkers for PHP and JavaScript code in Wikimedia projects
-(see https://www.mediawiki.org/wiki/Continuous_integration/Entry_points).
-To take advantage of this automation.
-  # install nodejs, npm, and PHP composer
-  # change to the extension's directory
-  # npm install
-  # composer install
+* [Download](https://github.com/kungfubonanza/EsvMediaWikiExtension/archive/master.zip) the extension, unzip it, and place in a directory called `Esv` in your `extensions` folder.
+* In Esv.hooks.php, replace the phrase `"INSERT KEY HERE"` with your [ESV API key](https://api.esv.org/docs/).
+* Add the following code to the bottom of your [LocalSettings.php](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:LocalSettings.php): `wfLoadExtension( 'Esv' );`
 
-Once set up, running `npm test` and `composer test` will run automated code checks.
+
+## Usage
+
+| Wikitext            | Rendering |
+| --------------------| --------- |
+| `<esv>Matt 1:1</esv>` | **Matt 1:1**: The book of the genealogy of Jesus Christ, the son of David, the son of Abraham.  |
+| `<esv format="html">Matt 1:1</esv>` | **Matt 1:1**: The book of the genealogy of Jesus Christ, the son of David, the son of Abraham.  |
+| `<esv format="text">Matt 1:1</esv>` | **Matt 1:1**: The book of the genealogy of Jesus Christ, the son of David, the son of Abraham.  |
+| `<esv>Matt 1:1\|Jesus Christ</esv>` | **Matt 1:1**: The book of the genealogy of **Jesus Christ**, the son of David, the son of Abraham.  |
+| `<esvlist>* Matt 1:1\|Jesus Christ</esvlist>` | &bull; **Matt 1:1**: The book of the genealogy of **Jesus Christ**, the son of David, the son of Abraham.
