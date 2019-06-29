@@ -1,0 +1,52 @@
+{
+	"name": "Esv",
+	"version": "0.0.0",
+	"author": [
+		"Your Name"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:Esv",
+	"descriptionmsg": "esv-desc",
+	"license-name": "MIT",
+	"type": "other",
+	"AutoloadClasses": {
+		"EsvHooks": "Esv.hooks.php",
+		"SpecialEsv": "specials/SpecialEsv.php"
+	},
+	"config": {
+		"EsvEnableFoo": true
+	},
+	"ExtensionMessagesFiles": {
+		"EsvAlias": "Esv.i18n.alias.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"EsvHooks::onParserFirstCallInit"
+		]
+	},
+	"MessagesDirs": {
+		"Esv": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"ext.esv.foo": {
+			"scripts": [
+				"modules/ext.esv.js",
+				"modules/ext.esv.foo.js"
+			],
+			"styles": [
+				"modules/ext.esv.foo.css"
+			],
+			"messages": [],
+			"dependencies": []
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "Esv"
+	},
+	"SpecialPages": {
+		"EsvLicense": "SpecialEsv"
+	},
+	"manifest_version": 1
+}
