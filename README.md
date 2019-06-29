@@ -5,7 +5,7 @@ This [MediaWiki](https://www.mediawiki.org) extension allows a Bible verse (from
 ## Installation
 
 * [Download](https://github.com/kungfubonanza/EsvMediaWikiExtension/archive/master.zip) the extension, unzip it, and place in a directory called `Esv` in your `extensions` folder.
-* In Esv.hooks.php, replace the phrase `"INSERT KEY HERE"` with your [ESV API key](https://api.esv.org/docs/).
+* In [Esv.hooks.php](https://github.com/kungfubonanza/EsvMediaWikiExtension/blob/master/Esv.hooks.php), replace the phrase `"INSERT KEY HERE"` with your [ESV API key](https://api.esv.org/docs/).
 * Add the following code to the bottom of your [LocalSettings.php](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:LocalSettings.php): `wfLoadExtension( 'Esv' );`
 
 
