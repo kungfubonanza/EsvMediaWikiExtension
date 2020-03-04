@@ -24,7 +24,7 @@ class EsvHooks {
 
    public static function getEsvText( $verse, $format ) {
       # grab the scripture from the ESV server
-      $key = "INSERT KEY HERE";
+      global $wgEsvApiKey;
       $passage = urlencode(trim(preg_replace('/\s\s+/', ' ', $verse)));
 
       $options = "include-passage-references=false&include-first-verse-numbers=false&include-chapter-numbers=false&include-verse-numbers=false&include-footnotes=false&include-short-copyright=false&include-passage-horizontal-lines=false&include-heading-horizontal-lines=false&include-headings=false&include-subheadings=false&include-audio-link=false&include-short-copyright=false&indent-poetry=false&indent-poetry-lines=0"; // plaintext
@@ -35,7 +35,7 @@ class EsvHooks {
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_HTTPHEADER     => array(
                 "Accept: application/json",
-                "Authorization: Token $key",
+                "Authorization: Token $wgEsvApiKey",
                 )
       );
       
