@@ -2,18 +2,21 @@
 	"name": "Esv",
 	"version": "0.0.0",
 	"author": [
-		"Your Name"
+		"Kungfubonanza"
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:Esv",
+	"url": "https://www.kungfubonanza.com",
 	"descriptionmsg": "esv-desc",
 	"license-name": "MIT",
-	"type": "other",
+	"type": "parserhook",
 	"AutoloadClasses": {
 		"EsvHooks": "Esv.hooks.php",
 		"SpecialEsv": "specials/SpecialEsv.php"
 	},
 	"config": {
-		"EsvEnableFoo": true
+		"EsvApiKey": {
+			"value": "API_KEY_VALUE",
+			"description": "ESV.org API key",
+		}
 	},
 	"ExtensionMessagesFiles": {
 		"EsvAlias": "Esv.i18n.alias.php"
@@ -27,19 +30,6 @@
 		"Esv": [
 			"i18n"
 		]
-	},
-	"ResourceModules": {
-		"ext.esv.foo": {
-			"scripts": [
-				"modules/ext.esv.js",
-				"modules/ext.esv.foo.js"
-			],
-			"styles": [
-				"modules/ext.esv.foo.css"
-			],
-			"messages": [],
-			"dependencies": []
-		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
