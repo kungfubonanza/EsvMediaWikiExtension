@@ -18,7 +18,6 @@ class EsvHooks {
        //  <dump foo="bar" baz="quux">test content</dump>
        $parser->setHook( 'esv', 'EsvHooks::parserTagEsv' );
        $parser->setHook( 'esvlist', 'EsvHooks::parserTagEsvList' );
-       $parser->setHook( 'openlibrary', 'EsvHooks::parserTagOpenLibrary' );
        return true;
    }
 
@@ -146,49 +145,5 @@ class EsvHooks {
                  $data);
 
        return $result;
-   }
-
-   /**
-    * Parser hook handler for <openlibrary>
-    *
-    * @param string $data: The content of the tag.
-    * @param array $params: The attributes of the tag.
-    * @param Parser $parser: Parser instance available to render
-    *  wikitext into html, or parser methods.
-    * @param PPFrame $frame: Can be used to see what template
-    *  arguments ({{{1}}}) this hook was used with.
-    *
-    * @return string: HTML to insert in the page.
-    */
-   public static function parserTagOpenLibrary( $data, $attribs, $parser, $frame ) {
-      $ISBN = urlencode($data);
-      $options = "bibkeys=ISBN:$ISBN&format=json&jscmd=data";
-      $url = "https://openlibrary.org/api/books?$options";
-      $ch = curl_init($url); 
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-      $response = curl_exec($ch);
-      curl_close($ch);
-
-      $obj = json_decode($response, true);
-      $subtitle = $obj["ISBN:$ISBN"]["subtitle"];
-      $cover = $obj["ISBN:$ISBN"]["cover"]["medium"];
-      $name = $obj["ISBN:$ISBN"]["title"];
-      if(NULL == $subtitle)
-      {
-            $title_orig = $name;
-      }
-      else
-      {
-            $title_orig = "$name: $subtitle";
-      }
-
-      $author = $obj["ISBN:$ISBN"]["authors"][0]["name"];
-      $publisher = $obj["ISBN:$ISBN"]["publishers"][0]["name"];
-      $release_date = $obj["ISBN:$ISBN"]["publish_date"];
-      $goodreads = $obj["ISBN:$ISBN"]["identifiers"]["goodreads"][0];
-
-      $text = $parser->recursiveTagParse("{{InfoboxBook|cover = $cover|name = $name|title_orig = $title_orig|author = $author|publisher = $publisher|release_date = $release_date|isbn = ISBN $ISBN|goodreads = $goodreads}}", $frame);
-
-       return $text;
    }
 }
